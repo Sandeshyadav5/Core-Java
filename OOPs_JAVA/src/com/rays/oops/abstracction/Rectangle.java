@@ -2,7 +2,7 @@ package com.rays.oops.abstracction;
 
 public class Rectangle extends Shape {
 	private int length;
-	private int width;
+    private int width;
 	
 	public int getLength() {
 		return length;
