@@ -1,13 +1,13 @@
 package com.rays.collection.queue;
 
-import java.util.ArrayDeque;
+import java.util.PriorityQueue;
 import java.util.Queue;
 
-public class TestQueue {
+public class TestPriorityQueue {
 	public static void main(String[] args) {
-		Queue q=new ArrayDeque();
+		Queue q=new PriorityQueue();
 		q.offer('a');
-		q.offer("24f");
+		//q.offer("24f");
 		q.offer('f');
 		System.out.println(q);
 	}
