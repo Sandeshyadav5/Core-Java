@@ -1,0 +1,272 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show database;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database' at line 1
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sandesh            |
+| sys                |
++--------------------+
+5 rows in set (0.40 sec)
+
+mysql> use sandesh;
+Database changed
+mysql> select * from sandesh
+    -> ;
+ERROR 1146 (42S02): Table 'sandesh.sandesh' doesn't exist
+mysql> select * from employee;
++----+---------+-------------------+--------+---------+
+| id | name    | company           | salary | address |
++----+---------+-------------------+--------+---------+
+|  1 | sandesh | tcs               |  50000 | indore  |
+|  2 | Durgesh | yash_technologies |  60000 | pune    |
++----+---------+-------------------+--------+---------+
+2 rows in set (0.12 sec)
+
+mysql> delete from employee where id=2;
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select * from employee;
++----+---------+---------+--------+---------+
+| id | name    | company | salary | address |
++----+---------+---------+--------+---------+
+|  1 | sandesh | tcs     |  50000 | indore  |
++----+---------+---------+--------+---------+
+1 row in set (0.00 sec)
+
+mysql> update em[ployee setname ="sandesh yadav" where id=1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[ployee setname ="sandesh yadav" where id=1' at line 1
+mysql> update employee setname ="sandesh yadav" where id=1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '="sandesh yadav" where id=1' at line 1
+mysql> update employee setname ='sandesh yadav' where id=1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '='sandesh yadav' where id=1' at line 1
+mysql> update employee setname = 'sandesh yadav' where id=1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= 'sandesh yadav' where id=1' at line 1
+mysql> update employee setname = "sandesh yadav" where id=1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= "sandesh yadav" where id=1' at line 1
+mysql> update employee set name = "sandesh yadav" where id=1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++----+---------------+---------+--------+---------+
+| id | name          | company | salary | address |
++----+---------------+---------+--------+---------+
+|  1 | sandesh yadav | tcs     |  50000 | indore  |
++----+---------------+---------+--------+---------+
+1 row in set (0.00 sec)
+
+mysql> Insert into employee values(2,'Amit','Wipro',48000,"Indore")
+    -> ;
+Query OK, 1 row affected (0.36 sec)
+
+mysql> select * from employee;
++----+---------------+---------+--------+---------+
+| id | name          | company | salary | address |
++----+---------------+---------+--------+---------+
+|  1 | sandesh yadav | tcs     |  50000 | indore  |
+|  2 | Amit          | Wipro   |  48000 | Indore  |
++----+---------------+---------+--------+---------+
+2 rows in set (0.00 sec)
+
+mysql> Insert into employee values(3,'sumit','WallMart',38000,"Indore"),(4,'Dinesh','Microsoft',59000,"Hyderabad"),(5,'Harshit','Cello',67000,"Indore");
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> Insert into employee values(6,'Ankit','WallMart',138000,"Pune"),(7,'Dhruvesh','Microsoft',53000,"Hyderabad"),(8,'Jit','TCS',57000,"Indore");
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++----+---------------+-----------+--------+-----------+
+| id | name          | company   | salary | address   |
++----+---------------+-----------+--------+-----------+
+|  1 | sandesh yadav | tcs       |  50000 | indore    |
+|  2 | Amit          | Wipro     |  48000 | Indore    |
+|  3 | sumit         | WallMart  |  38000 | Indore    |
+|  4 | Dinesh        | Microsoft |  59000 | Hyderabad |
+|  5 | Harshit       | Cello     |  67000 | Indore    |
+|  6 | Ankit         | WallMart  | 138000 | Pune      |
+|  7 | Dhruvesh      | Microsoft |  53000 | Hyderabad |
+|  8 | Jit           | TCS       |  57000 | Indore    |
++----+---------------+-----------+--------+-----------+
+8 rows in set (0.00 sec)
+
+mysql> create table department(id int primary key, Dept varchar(45);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> create table department(id int primary key, Dept varchar(45));
+Query OK, 0 rows affected (0.93 sec)
+
+mysql> select * from department;
+Empty set (0.00 sec)
+
+mysql> insert into department values(1,'HR'),(2,'Manager'),(3,'Account'),(4,'Developer'),(5,'Admin');
+Query OK, 5 rows affected (0.30 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from department;
++----+-----------+
+| id | Dept      |
++----+-----------+
+|  1 | HR        |
+|  2 | Manager   |
+|  3 | Account   |
+|  4 | Developer |
+|  5 | Admin     |
++----+-----------+
+5 rows in set (0.00 sec)
+
+mysql> alter table employee add dep_id int;
+Query OK, 0 rows affected (0.55 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table employee add dep_id int;
+ERROR 1060 (42S21): Duplicate column name 'dep_id'
+mysql> alter table employee add foreign key(dept_id) reference dapartment(id);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'reference dapartment(id)' at line 1
+mysql> alter table employee add foreign key (dept_id) reference dapartment(id);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'reference dapartment(id)' at line 1
+mysql> alter table employee add foreign key (dept_id) reference department(id);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'reference department(id)' at line 1
+mysql> alter table employee add foreign key (dep_id) reference dapartment(id);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'reference dapartment(id)' at line 1
+mysql> alter table employee add foreign key(dep_id) reference dapartment(id);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'reference dapartment(id)' at line 1
+mysql> alter table employee add foreign key(dep_id) references dapartment(id);
+ERROR 1824 (HY000): Failed to open the referenced table 'dapartment'
+mysql> alter table employee add foreign key(dep_id) references department(id);
+Query OK, 8 rows affected (0.68 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++----+---------------+-----------+--------+-----------+--------+
+| id | name          | company   | salary | address   | dep_id |
++----+---------------+-----------+--------+-----------+--------+
+|  1 | sandesh yadav | tcs       |  50000 | indore    |   NULL |
+|  2 | Amit          | Wipro     |  48000 | Indore    |   NULL |
+|  3 | sumit         | WallMart  |  38000 | Indore    |   NULL |
+|  4 | Dinesh        | Microsoft |  59000 | Hyderabad |   NULL |
+|  5 | Harshit       | Cello     |  67000 | Indore    |   NULL |
+|  6 | Ankit         | WallMart  | 138000 | Pune      |   NULL |
+|  7 | Dhruvesh      | Microsoft |  53000 | Hyderabad |   NULL |
+|  8 | Jit           | TCS       |  57000 | Indore    |   NULL |
++----+---------------+-----------+--------+-----------+--------+
+8 rows in set (0.00 sec)
+
+mysql>  update employee set dept_id = 4 where id = 6;
+ERROR 1054 (42S22): Unknown column 'dept_id' in 'field list'
+mysql>  update employee set dep_id = 4 where id = 6;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql>  update employee set dep_id = 3 where id = 1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql>  update employee set dep_id = 2 where id = 2;
+Query OK, 1 row affected (0.29 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql>  update employee set dep_id = 1 where id = 3;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql>  update employee set dep_id = 5 where id = 4;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql>  update employee set dep_id = 4 where id = 5;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql>  update employee set dep_id = 1 where id = 7;
+Query OK, 1 row affected (0.31 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql>  update employee set dep_id = 3 where id = 8;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++----+---------------+-----------+--------+-----------+--------+
+| id | name          | company   | salary | address   | dep_id |
++----+---------------+-----------+--------+-----------+--------+
+|  1 | sandesh yadav | tcs       |  50000 | indore    |      3 |
+|  2 | Amit          | Wipro     |  48000 | Indore    |      2 |
+|  3 | sumit         | WallMart  |  38000 | Indore    |      1 |
+|  4 | Dinesh        | Microsoft |  59000 | Hyderabad |      5 |
+|  5 | Harshit       | Cello     |  67000 | Indore    |      4 |
+|  6 | Ankit         | WallMart  | 138000 | Pune      |      4 |
+|  7 | Dhruvesh      | Microsoft |  53000 | Hyderabad |      1 |
+|  8 | Jit           | TCS       |  57000 | Indore    |      3 |
++----+---------------+-----------+--------+-----------+--------+
+8 rows in set (0.00 sec)
+
+mysql>  update employee set dep_id = NULL  where id = 7;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++----+---------------+-----------+--------+-----------+--------+
+| id | name          | company   | salary | address   | dep_id |
++----+---------------+-----------+--------+-----------+--------+
+|  1 | sandesh yadav | tcs       |  50000 | indore    |      3 |
+|  2 | Amit          | Wipro     |  48000 | Indore    |      2 |
+|  3 | sumit         | WallMart  |  38000 | Indore    |      1 |
+|  4 | Dinesh        | Microsoft |  59000 | Hyderabad |      5 |
+|  5 | Harshit       | Cello     |  67000 | Indore    |      4 |
+|  6 | Ankit         | WallMart  | 138000 | Pune      |      4 |
+|  7 | Dhruvesh      | Microsoft |  53000 | Hyderabad |   NULL |
+|  8 | Jit           | TCS       |  57000 | Indore    |      3 |
++----+---------------+-----------+--------+-----------+--------+
+8 rows in set (0.00 sec)
+
+mysql>  update employee set dep_id = null  where id = 8;
+Query OK, 1 row affected (0.30 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++----+---------------+-----------+--------+-----------+--------+
+| id | name          | company   | salary | address   | dep_id |
++----+---------------+-----------+--------+-----------+--------+
+|  1 | sandesh yadav | tcs       |  50000 | indore    |      3 |
+|  2 | Amit          | Wipro     |  48000 | Indore    |      2 |
+|  3 | sumit         | WallMart  |  38000 | Indore    |      1 |
+|  4 | Dinesh        | Microsoft |  59000 | Hyderabad |      5 |
+|  5 | Harshit       | Cello     |  67000 | Indore    |      4 |
+|  6 | Ankit         | WallMart  | 138000 | Pune      |      4 |
+|  7 | Dhruvesh      | Microsoft |  53000 | Hyderabad |   NULL |
+|  8 | Jit           | TCS       |  57000 | Indore    |   NULL |
++----+---------------+-----------+--------+-----------+--------+
+8 rows in set (0.00 sec)
+
+mysql> select * from employee inner join department on employee.dep_id = department.id;
++----+---------------+-----------+--------+-----------+--------+----+-----------+
+| id | name          | company   | salary | address   | dep_id | id | Dept      |
++----+---------------+-----------+--------+-----------+--------+----+-----------+
+|  3 | sumit         | WallMart  |  38000 | Indore    |      1 |  1 | HR        |
+|  2 | Amit          | Wipro     |  48000 | Indore    |      2 |  2 | Manager   |
+|  1 | sandesh yadav | tcs       |  50000 | indore    |      3 |  3 | Account   |
+|  5 | Harshit       | Cello     |  67000 | Indore    |      4 |  4 | Developer |
+|  6 | Ankit         | WallMart  | 138000 | Pune      |      4 |  4 | Developer |
+|  4 | Dinesh        | Microsoft |  59000 | Hyderabad |      5 |  5 | Admin     |
++----+---------------+-----------+--------+-----------+--------+----+-----------+
+6 rows in set (0.31 sec)
+
+mysql>
